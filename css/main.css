@@ -98,6 +98,7 @@ textarea {
    ========================================================================== */
 body {
 
+
 }
 .starter-template {
   padding: 40px 15px;
@@ -206,7 +207,17 @@ body {
        -moz-animation: rotate 1s linear infinite;
        -webkit-animation: rotate 1s linear infinite;
 }
-
+#random-image {
+	width: 100%;
+	height: 100%;
+	overflow:hidden;
+	position:absolute;
+	left:0px;
+	top:0px;
+	z-index:-1;
+	background-repeat: repeat-y;
+	background-repeat: repeat-x;
+}
 
 
 

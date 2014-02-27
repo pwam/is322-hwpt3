@@ -186,6 +186,6 @@
                 image_el.src = this.src;
                 self.slideUp();
             };
-            preload.src = 'http://lorempixel.com/800/600/?'+ (new Date().getTime());
+            preload.src = 'http://lorempixel.com/800/600/abstract/?'+ (new Date().getTime());
         }, 1000);
     };
