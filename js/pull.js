@@ -23,3 +23,23 @@
             };
     }());
 
+    var PullToRefresh = (function() {
+        function Main(container, slidebox, slidebox_icon, handler) {
+            var self = this;
+
+            this.breakpoint = 80;
+
+            this.container = container;
+            this.slidebox = slidebox;
+            this.slidebox_icon = slidebox_icon;
+            this.handler = handler;
+
+            this._slidedown_height = 0;
+            this._anim = null;
+            this._dragged_down = false;
+
+            this.hammertime = Hammer(this.container)
+                .on("touch dragdown release", function(ev) {
+                    self.handleHammer(ev);
+                });
+        };
