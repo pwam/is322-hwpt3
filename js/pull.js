@@ -123,3 +123,25 @@
                 this.container.style.top = height+"px";
             }
         };
+        Main.prototype.hide = function() {
+            container_el.className = '';
+            this._slidedown_height = 0;
+            this.setHeight(0);
+            cancelAnimationFrame(this._anim);
+            this._anim = null;
+            this._dragged_down = false;
+        };
+        Main.prototype.slideUp = function() {
+            var self = this;
+            cancelAnimationFrame(this._anim);
+
+            pullrefresh_el.className = 'slideup';
+            container_el.className = 'pullrefresh-slideup';
+
+            this.setHeight(0);
+
+            setTimeout(function() {
+                self.hide();
+            }, 500);
+        };
+
