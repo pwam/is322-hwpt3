@@ -145,3 +145,24 @@
             }, 500);
         };
 
+        Main.prototype.updateHeight = function() {
+            var self = this;
+
+            this.setHeight(this._slidedown_height);
+
+            if(this._slidedown_height >= this.breakpoint){
+                this.slidebox.className = 'breakpoint';
+                this.slidebox_icon.className = 'icon arrow arrow-up';
+            }
+            else {
+                this.slidebox.className = '';
+                this.slidebox_icon.className = 'icon arrow';
+            }
+
+            this._anim = requestAnimationFrame(function() {
+                self.updateHeight();
+            });
+        };
+
+        return Main;
+    })();
