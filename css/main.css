@@ -103,7 +103,20 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
-
+.content-area {
+	position: relative;
+	width: 960px; 
+	margin: 0 auto;
+}
+.carousel-indicators li { 
+	border-radius: 50%; 
+    	height: 20px;
+    	width: 20px;
+}
+.carousel-indicators .active {
+    	height: 20px;
+    	width: 20px;
+}
 
 
 
