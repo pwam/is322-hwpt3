@@ -104,3 +104,22 @@
                     break;
             }
         };
+        Main.prototype.setHeight = function(height) {
+            if(Modernizr.csstransforms3d) {
+                this.container.style.transform = 'translate3d(0,'+height+'px,0) ';
+                this.container.style.oTransform = 'translate3d(0,'+height+'px,0)';
+                this.container.style.msTransform = 'translate3d(0,'+height+'px,0)';
+                this.container.style.mozTransform = 'translate3d(0,'+height+'px,0)';
+                this.container.style.webkitTransform = 'translate3d(0,'+height+'px,0) scale3d(1,1,1)';
+            }
+            else if(Modernizr.csstransforms) {
+                this.container.style.transform = 'translate(0,'+height+'px) ';
+                this.container.style.oTransform = 'translate(0,'+height+'px)';
+                this.container.style.msTransform = 'translate(0,'+height+'px)';
+                this.container.style.mozTransform = 'translate(0,'+height+'px)';
+                this.container.style.webkitTransform = 'translate(0,'+height+'px)';
+            }
+            else {
+                this.container.style.top = height+"px";
+            }
+        };
