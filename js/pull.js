@@ -166,3 +166,26 @@
 
         return Main;
     })();
+
+    function getEl(id) {
+        return document.getElementById(id);
+    }
+
+    var container_el = getEl('container');
+    var pullrefresh_el = getEl('pullrefresh');
+    var pullrefresh_icon_el = getEl('pullrefresh-icon');
+    var image_el = getEl('random-image');
+
+    var refresh = new PullToRefresh(container_el, pullrefresh_el, pullrefresh_icon_el);
+
+    refresh.handler = function() {
+        var self = this;
+        setTimeout(function() {
+            var preload = new Image();
+            preload.onload = function() {
+                image_el.src = this.src;
+                self.slideUp();
+            };
+            preload.src = 'http://lorempixel.com/800/600/?'+ (new Date().getTime());
+        }, 1000);
+    };
