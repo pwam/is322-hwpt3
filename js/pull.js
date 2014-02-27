@@ -43,3 +43,64 @@
                     self.handleHammer(ev);
                 });
         };
+        Main.prototype.handleHammer = function(ev) {
+            var self = this;
+
+            switch(ev.type) {
+                // reset element on start
+                case 'touch':
+                    this.hide();
+                    break;
+
+                // on release we check how far we dragged
+                case 'release':
+                    if(!this._dragged_down) {
+                        return;
+                    }
+
+                    // cancel animation
+                    cancelAnimationFrame(this._anim);
+
+                    // over the breakpoint, trigger the callback
+                    if(ev.gesture.deltaY >= this.breakpoint) {
+                        container_el.className = 'pullrefresh-loading';
+                        pullrefresh_icon_el.className = 'icon loading';
+
+                        this.setHeight(60);
+                        this.handler.call(this);
+                    }
+                    // just hide it
+                    else {
+                        pullrefresh_el.className = 'slideup';
+                        container_el.className = 'pullrefresh-slideup';
+
+                        this.hide();
+                    }
+                    break;
+
+                // when we dragdown
+                case 'dragdown':
+                    this._dragged_down = true;
+
+                    // if we are not at the top move down
+                    var scrollY = window.scrollY;
+                    if(scrollY > 5) {
+                        return;
+                    } else if(scrollY !== 0) {
+                        window.scrollTo(0,0);
+                    }
+
+                    // no requestAnimationFrame instance is running, start one
+                    if(!this._anim) {
+                        this.updateHeight();
+                    }
+
+                    // stop browser scrolling
+                    ev.gesture.preventDefault();
+
+                    // update slidedown height
+                    // it will be updated when requestAnimationFrame is called
+                    this._slidedown_height = ev.gesture.deltaY * 0.4;
+                    break;
+            }
+        };
